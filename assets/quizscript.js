@@ -11,8 +11,23 @@ console.log("Starting currentTimeRemaining: ", currentTimeRemaining);
 
 // countdown function
 function countdown (seconds, currentTimeRemaining) {
+  /* seconds: 
+   * addSeconds: 
+   */
   var now = new Date().getTime();
-  var then = now + seconds;
+  console.log("now: ", now/1000);
+
+  // default case
+  if (seconds == currentTimeRemaining) {
+    var then = now + seconds * 1000;
+    console.log("default time case");
+    console.log("then: ", then/1000);
+  }
+  else {
+    var then = now + seconds * 1000 - currentTimeRemaining * 1000;
+    console.log("other time case");
+    console.log("then: ", then/1000);
+  }
   console.log("currentTimeRemaining: ", currentTimeRemaining);
   // print the countdown
   timerElt.textContent = "Time left: " + currentTimeRemaining;
