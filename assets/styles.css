@@ -1,0 +1,54 @@
+/* Various CSS variables */
+:root {
+/* Color scheme: http://paletton.com/#uid=23u0u0kfBZg1j+Z9w+mkGXdppSu */
+    --base-color: #87CFFA;
+    --light: #B6E3FD;
+    --lighter: #F5FBFF;
+    --dark: #3AA6E6;
+    --darker: #067CC3;
+    --darkest: #43677d;
+}
+    
+/* Assign uniform font scheme to all elements */
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+    
+/* A light color background for the whole body of the site */
+body {
+    background-color: var(--lighter);
+}
+
+header {
+}
+
+ul.header-list {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 0;
+}
+
+ul.header-list li {
+    flex-direction: row;
+    list-style-type: none;
+}
+
+ul.header-list button {
+    border: none;
+    background-color: var(--lighter);
+    color: var(--dark);
+    text-decoration: underline;
+    cursor: auto;
+}
+
+div {
+    text-align: center;
+    color: var(--darkest);
+}
+
+div button {
+    color: var(--lighter);
+    background-color: var(--darkest);
+    border: 2px solid var(--darker);
+    padding: 5px;
+}
