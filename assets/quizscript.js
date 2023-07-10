@@ -5,10 +5,9 @@ var quizStartElt = document.querySelector("#start-quiz");
 var timerElt = document.querySelector("#countdown");
 
 var yourScore = 0;
-var defaultTimeRemaining = 5; // global variable
+var defaultTimeRemaining = 60; // global variable
 var currentTimeRemaining = defaultTimeRemaining; // initial value
 var timeInterval;
-console.log("Starting currentTimeRemaining: ", currentTimeRemaining);
 
 // countdown function
 function countdown (seconds, addSeconds) {
@@ -24,13 +23,12 @@ function countdown (seconds, addSeconds) {
   if (addSeconds != 0) {
     currentTimeRemaining += addSeconds;
   }
-  console.log("starting now: ", new Date().getTime()/1000);
   // print the countdown
   timerElt.textContent = "Time left: " + currentTimeRemaining;
+
   timeInterval = setInterval(function () {
     if (currentTimeRemaining == 0) {
       clearInterval(timeInterval);
-      console.log("stopping now: ", new Date().getTime()/1000);
       return;
     }
     currentTimeRemaining--;
@@ -127,7 +125,6 @@ function rightAnswerListener() {
   var questionTimeout = setTimeout(function () {
     displayElt.textContent = ""; // clear existing content
   }, 1000);
-  countdown(currentTimeRemaining, 10);
 }
 
 function wrongAnswerListener() {
@@ -135,9 +132,8 @@ function wrongAnswerListener() {
   thing.textContent = "INCORRECT!";
   displayElt.appendChild(thing);
   yourScore -= 10;
-  //timeRemaining -= 10;
-  //countdown(timeRemaining);
   var questionTimeout = setTimeout(function () {
     displayElt.textContent = ""; // clear existing content
   }, 1000);
+  countdown(currentTimeRemaining, -10);
 }
