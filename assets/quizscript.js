@@ -5,22 +5,24 @@ var quizStartElt = document.querySelector("#start-quiz");
 var timerElt = document.querySelector("#countdown");
 
 var yourScore = 0;
-var timeRemaining = 60; // global variable
+var defaultTimeRemaining = 60; // global variable
 
 // countdown function
-function countdown (timeLeft) {
-    var timeInterval = setInterval(function () {
-        // print the countdown
-        timerElt.textContent = "Time left: " + timeLeft;
-    
-        if (timeLeft == 0) {
-          clearInterval(timeInterval);
-          displayResults();
-        }
-    
-        timeLeft--;
-        timeRemaining--;
-      }, 1000);
+function countdown (seconds, currentTimeRemaining) {
+  var now = new Date().getTime();
+  var then = now + seconds;
+  console.log("Initial then: ", then);
+  // print the countdown
+  timerElt.textContent = "Time left: " + currentTimeRemaining;
+  var timeInterval = setInterval(function () {
+    if ((then - now) == 0) {
+      clearInterval(timeInterval);
+    }
+    seconds--;
+    timerElt.textContent = "Time left: " + seconds;
+    then = now + seconds;
+    console.log("New then: ", then);
+  }, 1000);
 }
 
 // displayHighScore function
@@ -37,7 +39,7 @@ highScoreElt.addEventListener("click", displayHighScore);
 // startQuiz function
 function startQuiz() {
     displayElt.textContent = ""; // clear existing content
-    countdown(timeRemaining);
+    countdown(defaultTimeRemaining, defaultTimeRemaining);
     addQuestion("Commonly used data types DO NOT include: ", "1. strings", "2. booleans", "3. alerts", "4. numbers", false, false, true, false);
 }
 
