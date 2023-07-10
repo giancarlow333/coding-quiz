@@ -66,15 +66,50 @@ function addQuestion(qtext, text1, text2, text3, text4, ans1, ans2, ans3, ans4) 
 
   // Add an unordered list showing the possible answers
   var addList = document.createElement("ul");
-  var toAdd = [ btnElt1, btnElt2, btnElt3, btnElt4 ]
+  var btnList = [ btnElt1, btnElt2, btnElt3, btnElt4 ]
   for (var i = 0; i < 4; i++) {
     var addThis = document.createElement("li");
-    addThis.appendChild(toAdd[i]);
+    addThis.appendChild(btnList[i]);
     addList.appendChild(addThis);
   }
   displayElt.appendChild(addList);
 
   // Add event listeners for each possible answer
+  if (ans1 == true) {
+    btnElt1.addEventListener("click", rightAnswerListener);
+  }
+  else {
+    btnElt1.addEventListener("click", wrongAnswerListener);
+  }
+  if (ans2 == true) {
+    btnElt2.addEventListener("click", rightAnswerListener);
+  }
+  else {
+    btnElt2.addEventListener("click", wrongAnswerListener);
+  }
+  if (ans3 == true) {
+    btnElt3.addEventListener("click", rightAnswerListener);
+  }
+  else {
+    btnElt3.addEventListener("click", wrongAnswerListener);
+  }
+  if (ans4 == true) {
+    btnElt4.addEventListener("click", rightAnswerListener);
+  }
+  else {
+    btnElt4.addEventListener("click", wrongAnswerListener);
+  }
 }
 
 // Event listeners for each possible answer
+function rightAnswerListener() {
+  var thing = document.createElement("h2");
+  thing.textContent = "CORRECT!";
+  displayElt.appendChild(thing);
+}
+
+function wrongAnswerListener() {
+  var thing = document.createElement("h2");
+  thing.textContent = "INCORRECT!";
+  displayElt.appendChild(thing);
+}
