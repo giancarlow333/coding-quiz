@@ -45,8 +45,6 @@ function startQuiz() {
 quizStartElt.addEventListener("click", startQuiz);
 
 function addQuestion(qtext, text1, text2, text3, text4, ans1, ans2, ans3, ans4) {
-  displayElt.textContent = ""; // clear existing content
-
   // Create elements that will hold the question
   var theQuestion = document.createElement("h2");
   var btnElt1 = document.createElement("button");
@@ -111,6 +109,9 @@ function rightAnswerListener() {
   thing.textContent = "CORRECT!";
   displayElt.appendChild(thing);
   yourScore += 10;
+  var questionTimeout = setTimeout(function () {
+    displayElt.textContent = ""; // clear existing content
+  }, 1000);
 }
 
 function wrongAnswerListener() {
@@ -120,4 +121,7 @@ function wrongAnswerListener() {
   yourScore -= 10;
   //timeRemaining -= 10;
   //countdown(timeRemaining);
+  var questionTimeout = setTimeout(function () {
+    displayElt.textContent = ""; // clear existing content
+  }, 1000);
 }
