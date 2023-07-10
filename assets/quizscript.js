@@ -5,23 +5,26 @@ var quizStartElt = document.querySelector("#start-quiz");
 var timerElt = document.querySelector("#countdown");
 
 var yourScore = 0;
-var defaultTimeRemaining = 60; // global variable
+var defaultTimeRemaining = 5; // global variable
 
 // countdown function
 function countdown (seconds, currentTimeRemaining) {
   var now = new Date().getTime();
   var then = now + seconds;
   console.log("Initial then: ", then);
+  console.log("Initial now: ", now);
   // print the countdown
   timerElt.textContent = "Time left: " + currentTimeRemaining;
   var timeInterval = setInterval(function () {
     if ((then - now) == 0) {
       clearInterval(timeInterval);
+      return;
     }
     seconds--;
     timerElt.textContent = "Time left: " + seconds;
     then = now + seconds;
     console.log("New then: ", then);
+    console.log("New now: ", now);
   }, 1000);
 }
 
