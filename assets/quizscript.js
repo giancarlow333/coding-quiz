@@ -2,6 +2,23 @@
 var highScoreElt = document.querySelector("#high-score");
 var displayElt = document.querySelector("#display");
 var quizStartElt = document.querySelector("#start-quiz");
+var timerElt = document.querySelector("#countdown");
+
+// countdown function
+function countdown () {
+    var timeLeft = 60;
+    var timeInterval = setInterval(function () {
+        // print the countdown
+        timerElt.textContent = "Time left: " + timeLeft;
+    
+        if (timeLeft == 0) {
+          clearInterval(timeInterval);
+          displayResults();
+        }
+    
+        timeLeft--;
+      }, 1000);
+}
 
 // displayHighScore function
 function displayHighScore() {
@@ -20,7 +37,9 @@ function startQuiz() {
     var h2 = document.createElement("h2");
     h2.textContent = "Your first word is: onomatopoeia.";
     displayElt.appendChild(h2);
+    countdown();
 }
 
-// Add event listener to the high score button
+// Add event listener to the start quiz button
 quizStartElt.addEventListener("click", startQuiz);
+
