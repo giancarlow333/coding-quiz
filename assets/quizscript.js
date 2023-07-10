@@ -4,6 +4,9 @@ var displayElt = document.querySelector("#display");
 var quizStartElt = document.querySelector("#start-quiz");
 var timerElt = document.querySelector("#countdown");
 
+var yourScore = 0;
+var timeRemaining = 60; // global variable
+
 // countdown function
 function countdown (timeLeft) {
     var timeInterval = setInterval(function () {
@@ -16,6 +19,7 @@ function countdown (timeLeft) {
         }
     
         timeLeft--;
+        timeRemaining--;
       }, 1000);
 }
 
@@ -33,7 +37,7 @@ highScoreElt.addEventListener("click", displayHighScore);
 // startQuiz function
 function startQuiz() {
     displayElt.textContent = ""; // clear existing content
-    countdown(60);
+    countdown(timeRemaining);
     addQuestion("Commonly used data types DO NOT include: ", "1. strings", "2. booleans", "3. alerts", "4. numbers", false, false, true, false);
 }
 
@@ -106,10 +110,14 @@ function rightAnswerListener() {
   var thing = document.createElement("h2");
   thing.textContent = "CORRECT!";
   displayElt.appendChild(thing);
+  yourScore += 10;
 }
 
 function wrongAnswerListener() {
   var thing = document.createElement("h2");
   thing.textContent = "INCORRECT!";
   displayElt.appendChild(thing);
+  yourScore -= 10;
+  //timeRemaining -= 10;
+  //countdown(timeRemaining);
 }
