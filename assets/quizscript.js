@@ -7,6 +7,7 @@ var timerElt = document.querySelector("#countdown");
 var yourScore = 0;
 var defaultTimeRemaining = 5; // global variable
 var currentTimeRemaining = defaultTimeRemaining; // initial value
+var timeInterval;
 console.log("Starting currentTimeRemaining: ", currentTimeRemaining);
 
 // countdown function
@@ -14,30 +15,26 @@ function countdown (seconds, addSeconds) {
   /* seconds: Seconds in the countdown, i.e. currentTimeRemaining
    * addSeconds: Seconds to add to an EXISTING countdown
    */
-  var now = new Date().getTime();
-  console.log("now: ", now/1000);
-
-  // default case
-  if (addSeconds == 0) {
-    var then = now + seconds;
+  // clear existing interval
+  if (timeInterval) {
+    clearInterval(timeInterval);
+    console.log("Interval cleared");
   }
-  else {
-    var then = now + addSeconds;
+
+  if (addSeconds != 0) {
     currentTimeRemaining += addSeconds;
   }
-  console.log("currentTimeRemaining: ", currentTimeRemaining);
+  console.log("starting now: ", new Date().getTime()/1000);
   // print the countdown
   timerElt.textContent = "Time left: " + currentTimeRemaining;
-  var timeInterval = setInterval(function () {
+  timeInterval = setInterval(function () {
     if (currentTimeRemaining == 0) {
       clearInterval(timeInterval);
+      console.log("stopping now: ", new Date().getTime()/1000);
       return;
     }
     currentTimeRemaining--;
     timerElt.textContent = "Time left: " + currentTimeRemaining;
-    //then = now + currentTimeRemaining;
-    now = new Date().getTime();
-    console.log("currentTimeRemaining: ", currentTimeRemaining);
   }, 1000);
 }
 

@@ -30,6 +30,7 @@ THEN I can save my initials and my score
 Non-original code in this project:
 
 * I got the idea for using JavaScript Date() functions to update the countdown clock dynamically from [this freeCodeCamp.Org thread](https://forum.freecodecamp.org/t/javascript-jquery-countdown-timer-with-update-capability/505432).
+ * https://stackoverflow.com/questions/59408241/how-to-stop-a-running-countdown-timer
 
 ---
 Written by Giancarlo Whitaker, 2023
