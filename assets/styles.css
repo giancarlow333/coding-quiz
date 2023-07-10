@@ -38,14 +38,20 @@ ul.header-list button {
     cursor: auto;
 }
 
-div {
+div.display {
     text-align: center;
     color: var(--darkest);
 }
 
-div button {
+div.display button {
     color: var(--lighter);
     background-color: var(--darkest);
     border: 2px solid var(--darker);
     padding: 5px;
+}
+
+div.display li {
+    text-align: left;
+    padding-top: 5px;
+    list-style-type: none;
 }
