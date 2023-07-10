@@ -10,23 +10,19 @@ var currentTimeRemaining = defaultTimeRemaining;
 console.log("Starting currentTimeRemaining: ", currentTimeRemaining);
 
 // countdown function
-function countdown (seconds, currentTimeRemaining) {
-  /* seconds: 
-   * addSeconds: 
+function countdown (seconds, addSeconds) {
+  /* seconds: Seconds in the countdown
+   * addSeconds: Seconds to add to an EXISTING countdown
    */
   var now = new Date().getTime();
   console.log("now: ", now/1000);
 
   // default case
-  if (seconds == currentTimeRemaining) {
-    var then = now + seconds * 1000;
-    console.log("default time case");
-    console.log("then: ", then/1000);
+  if (addSeconds == 0) {
+    var then = now + seconds;
   }
   else {
-    var then = now + seconds * 1000 - currentTimeRemaining * 1000;
-    console.log("other time case");
-    console.log("then: ", then/1000);
+    var then = now + seconds + addSeconds;
   }
   console.log("currentTimeRemaining: ", currentTimeRemaining);
   // print the countdown
@@ -58,7 +54,7 @@ highScoreElt.addEventListener("click", displayHighScore);
 // startQuiz function
 function startQuiz() {
     displayElt.textContent = ""; // clear existing content
-    countdown(defaultTimeRemaining, defaultTimeRemaining);
+    countdown(defaultTimeRemaining, 0);
     addQuestion("Commonly used data types DO NOT include: ", "1. strings", "2. booleans", "3. alerts", "4. numbers", false, false, true, false);
 }
 
@@ -133,7 +129,7 @@ function rightAnswerListener() {
   var questionTimeout = setTimeout(function () {
     displayElt.textContent = ""; // clear existing content
   }, 1000);
-  countdown(10, currentTimeRemaining);
+  countdown(currentTimeRemaining, 10);
 }
 
 function wrongAnswerListener() {
