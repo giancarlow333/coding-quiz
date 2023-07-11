@@ -9,12 +9,13 @@ var defaultTimeRemaining = 60; // global variable
 var currentTimeRemaining = defaultTimeRemaining; // initial value
 var timeInterval;
 var questionCount = 0;
+const maxNumberOfQuestions = 2; // when questionCount equals this, quit all
 
 // countdown function
+/* seconds: Seconds in the countdown, i.e. currentTimeRemaining
+ * addSeconds: Seconds to add to an EXISTING countdown
+ */
 function countdown (seconds, addSeconds) {
-  /* seconds: Seconds in the countdown, i.e. currentTimeRemaining
-   * addSeconds: Seconds to add to an EXISTING countdown
-   */
   // clear existing interval
   if (timeInterval) {
     clearInterval(timeInterval);
@@ -54,32 +55,6 @@ function startQuiz() {
   countdown(defaultTimeRemaining, 0);
   addQuestion(questionArray[questionCount]);
 }
-
-// Question Objects
-const firstQuestion = {
-  qtext: "Commonly used data types DO NOT include: ", 
-  text1: "1. strings", 
-  text2: "2. booleans", 
-  text3: "3. alerts", 
-  text4: "4. numbers", 
-  ans1: false, 
-  ans2: false, 
-  ans3: true, 
-  ans4: false
-};
-const secondQuestion = {
-  qtext: "SECOND: ", 
-  text1: "1. strings", 
-  text2: "2. booleans", 
-  text3: "3. alerts", 
-  text4: "4. numbers", 
-  ans1: false, 
-  ans2: false, 
-  ans3: true, 
-  ans4: false
-};
-
-const questionArray = [ firstQuestion, secondQuestion ];
 
 // Add event listener to the start quiz button
 quizStartElt.addEventListener("click", startQuiz);
@@ -170,4 +145,28 @@ function clearAndAdvanceQuestion(questionNumber) {
   addQuestion(questionArray[questionNumber]);
 }
 
-// array of questions?
+// Question Objects
+const firstQuestion = {
+  qtext: "Commonly used data types DO NOT include: ", 
+  text1: "1. strings", 
+  text2: "2. booleans", 
+  text3: "3. alerts", 
+  text4: "4. numbers", 
+  ans1: false, 
+  ans2: false, 
+  ans3: true, 
+  ans4: false
+};
+const secondQuestion = {
+  qtext: "The condition in an if/else statement is enclosed within: ", 
+  text1: "1. quotes", 
+  text2: "2. curly brackets", 
+  text3: "3. parentheses", 
+  text4: "4. square brackets", 
+  ans1: false, 
+  ans2: false, 
+  ans3: true, 
+  ans4: false
+};
+
+const questionArray = [ firstQuestion, secondQuestion ];
