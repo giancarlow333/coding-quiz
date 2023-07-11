@@ -8,6 +8,7 @@ var yourScore = 0;
 var defaultTimeRemaining = 60; // global variable
 var currentTimeRemaining = defaultTimeRemaining; // initial value
 var timeInterval;
+var questionCount = 0;
 
 // countdown function
 function countdown (seconds, addSeconds) {
@@ -51,14 +52,39 @@ highScoreElt.addEventListener("click", displayHighScore);
 function startQuiz() {
   displayElt.textContent = ""; // clear existing content
   countdown(defaultTimeRemaining, 0);
-  addQuestion("Commonly used data types DO NOT include: ", "1. strings", "2. booleans", "3. alerts", "4. numbers", false, false, true, false);
-  addQuestion("SECOND QUESTION: ", "1. strings", "2. booleans", "3. alerts", "4. numbers", false, false, true, false);
+  addQuestion(0);
 }
+
+// Question Objects
+const firstQuestion = {
+  qtext: "Commonly used data types DO NOT include: ", 
+  text1: "1. strings", 
+  text2: "2. booleans", 
+  text3: "3. alerts", 
+  text4: "4. numbers", 
+  ans1: false, 
+  ans2: false, 
+  ans3: true, 
+  ans4: false
+};
+const secondQuestion = {
+  qtext: "SECOND: ", 
+  text1: "1. strings", 
+  text2: "2. booleans", 
+  text3: "3. alerts", 
+  text4: "4. numbers", 
+  ans1: false, 
+  ans2: false, 
+  ans3: true, 
+  ans4: false
+};
+
+const questionArray = [ firstQuestion, secondQuestion ];
 
 // Add event listener to the start quiz button
 quizStartElt.addEventListener("click", startQuiz);
 
-function addQuestion(qtext, text1, text2, text3, text4, ans1, ans2, ans3, ans4) {
+function addQuestion(questionObject) {
   // Create elements that will hold the question
   var theQuestion = document.createElement("h2");
   var btnElt1 = document.createElement("button");
@@ -67,15 +93,11 @@ function addQuestion(qtext, text1, text2, text3, text4, ans1, ans2, ans3, ans4) 
   var btnElt4 = document.createElement("button");
 
   // Assign question text to those elements
-  theQuestion.textContent = qtext;
-  btnElt1.textContent = text1;
-  btnElt1.setAttribute("id", "question-1");
-  btnElt2.textContent = text2;
-  btnElt2.setAttribute("id", "question-2");
-  btnElt3.textContent = text3;
-  btnElt3.setAttribute("id", "question-3");
-  btnElt4.textContent = text4;
-  btnElt4.setAttribute("id", "question-4");
+  theQuestion.textContent = questionObject.qtext;
+  btnElt1.textContent = questionObject.text1;
+  btnElt2.textContent = questionObject.text2;
+  btnElt3.textContent = questionObject.text3;
+  btnElt4.textContent = questionObject.text4;
 
   // Add text of the question to the display
   displayElt.appendChild(theQuestion);
@@ -91,25 +113,25 @@ function addQuestion(qtext, text1, text2, text3, text4, ans1, ans2, ans3, ans4) 
   displayElt.appendChild(addList);
 
   // Add event listeners for each possible answer
-  if (ans1 == true) {
+  if (questionObject.ans1 == true) {
     btnElt1.addEventListener("click", rightAnswerListener);
   }
   else {
     btnElt1.addEventListener("click", wrongAnswerListener);
   }
-  if (ans2 == true) {
+  if (questionObject.ans2 == true) {
     btnElt2.addEventListener("click", rightAnswerListener);
   }
   else {
     btnElt2.addEventListener("click", wrongAnswerListener);
   }
-  if (ans3 == true) {
+  if (questionObject.ans3 == true) {
     btnElt3.addEventListener("click", rightAnswerListener);
   }
   else {
     btnElt3.addEventListener("click", wrongAnswerListener);
   }
-  if (ans4 == true) {
+  if (questionObject.ans4 == true) {
     btnElt4.addEventListener("click", rightAnswerListener);
   }
   else {
@@ -124,7 +146,8 @@ function rightAnswerListener() {
   displayElt.appendChild(thing);
   yourScore += 10;
   setTimeout(function () {
-    clearAndAdvanceQuestion();
+    questionCount += 1;
+    clearAndAdvanceQuestion(questionCount);
   }, 1000);
 }
 
@@ -135,14 +158,16 @@ function wrongAnswerListener() {
   yourScore -= 10;
   setTimeout(function () {
     // separate function to clear and advance question
-    clearAndAdvanceQuestion();
+    questionCount += 1;
+    clearAndAdvanceQuestion(questionCount);
   }, 1000);
   countdown(currentTimeRemaining, -10);
 }
 
-function clearAndAdvanceQuestion() {
+function clearAndAdvanceQuestion(questionNumber) {
   // clear the screen
   displayElt.textContent = "";
+  addQuestion(questionArray[questionNumber]);
 }
 
 // array of questions?
