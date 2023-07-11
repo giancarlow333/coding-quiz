@@ -154,12 +154,29 @@ function clearAndAdvanceQuestion(questionNumber) {
 function showFinalScore() {
   // clear the screen
   displayElt.textContent = "";
+
+  // Element variables
   var h2 = document.createElement("h2");
+  var p1 = document.createElement("p");
+  var p2 = document.createElement("p");
+  var formElt = document.createElement("form");
+  var inputElt = document.createElement("input");
+  var labelElt = document.createElement("label");
+  var btnElt = document.createElement("button");
+  
   h2.textContent = "All done!";
   displayElt.appendChild(h2);
-  var p1 = document.createElement("p");
   p1.textContent = "Your final score is " + yourScore;
   displayElt.appendChild(p1);
+  labelElt.textContent = "Enter your initials: ";
+  labelElt.setAttribute("for", "initials");
+  inputElt.setAttribute("name", "initials");
+  btnElt.textContent = "Submit";
+  formElt.appendChild(labelElt);
+  formElt.appendChild(inputElt);
+  formElt.appendChild(btnElt);
+  p2.appendChild(formElt);
+  displayElt.appendChild(p2);
 }
 
 // Question Objects
