@@ -38,10 +38,10 @@ function countdown (seconds, addSeconds) {
 
 // displayHighScore function
 function displayHighScore() {
-    displayElt.textContent = ""; // clear existing content
-    var h2 = document.createElement("h2");
-    h2.textContent = "The high score is 99";
-    displayElt.appendChild(h2);
+  displayElt.textContent = ""; // clear existing content
+  var h2 = document.createElement("h2");
+  h2.textContent = "The high score is 99";
+  displayElt.appendChild(h2);
 }
 
 // Add event listener to the high score button
@@ -52,9 +52,7 @@ function startQuiz() {
   displayElt.textContent = ""; // clear existing content
   countdown(defaultTimeRemaining, 0);
   addQuestion("Commonly used data types DO NOT include: ", "1. strings", "2. booleans", "3. alerts", "4. numbers", false, false, true, false);
-  if (displaySecondQuestion == true) {
-    addQuestion("SECOND QUESTION: ", "1. strings", "2. booleans", "3. alerts", "4. numbers", false, false, true, false);
-  }
+  addQuestion("SECOND QUESTION: ", "1. strings", "2. booleans", "3. alerts", "4. numbers", false, false, true, false);
 }
 
 // Add event listener to the start quiz button
@@ -125,8 +123,8 @@ function rightAnswerListener() {
   thing.textContent = "CORRECT!";
   displayElt.appendChild(thing);
   yourScore += 10;
-  var questionTimeout = setTimeout(function () {
-    displayElt.textContent = ""; // clear existing content
+  setTimeout(function () {
+    clearAndAdvanceQuestion();
   }, 1000);
 }
 
@@ -135,8 +133,16 @@ function wrongAnswerListener() {
   thing.textContent = "INCORRECT!";
   displayElt.appendChild(thing);
   yourScore -= 10;
-  var questionTimeout = setTimeout(function () {
-    displayElt.textContent = ""; // clear existing content
+  setTimeout(function () {
+    // separate function to clear and advance question
+    clearAndAdvanceQuestion();
   }, 1000);
   countdown(currentTimeRemaining, -10);
 }
+
+function clearAndAdvanceQuestion() {
+  // clear the screen
+  displayElt.textContent = "";
+}
+
+// array of questions?
