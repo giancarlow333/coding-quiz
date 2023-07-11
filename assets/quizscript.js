@@ -8,7 +8,6 @@ var yourScore = 0;
 var defaultTimeRemaining = 60; // global variable
 var currentTimeRemaining = defaultTimeRemaining; // initial value
 var timeInterval;
-var displaySecondQuestion = false;
 
 // countdown function
 function countdown (seconds, addSeconds) {
@@ -128,7 +127,6 @@ function rightAnswerListener() {
   yourScore += 10;
   var questionTimeout = setTimeout(function () {
     displayElt.textContent = ""; // clear existing content
-    displaySecondQuestion = true;
   }, 1000);
 }
 
@@ -139,7 +137,6 @@ function wrongAnswerListener() {
   yourScore -= 10;
   var questionTimeout = setTimeout(function () {
     displayElt.textContent = ""; // clear existing content
-    displaySecondQuestion = true;
   }, 1000);
   countdown(currentTimeRemaining, -10);
 }
