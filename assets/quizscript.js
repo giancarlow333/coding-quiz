@@ -142,7 +142,24 @@ function wrongAnswerListener() {
 function clearAndAdvanceQuestion(questionNumber) {
   // clear the screen
   displayElt.textContent = "";
-  addQuestion(questionArray[questionNumber]);
+  if (questionNumber < maxNumberOfQuestions) {
+    addQuestion(questionArray[questionNumber]);
+  }
+  else { // quit
+    showFinalScore();
+  }
+}
+
+// function for summary
+function showFinalScore() {
+  // clear the screen
+  displayElt.textContent = "";
+  var h2 = document.createElement("h2");
+  h2.textContent = "All done!";
+  displayElt.appendChild(h2);
+  var p1 = document.createElement("p");
+  p1.textContent = "Your final score is " + yourScore;
+  displayElt.appendChild(p1);
 }
 
 // Question Objects
