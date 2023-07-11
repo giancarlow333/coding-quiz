@@ -29,8 +29,7 @@ THEN I can save my initials and my score
 
 Non-original code in this project:
 
-* I got the idea for using JavaScript Date() functions to update the countdown clock dynamically from [this freeCodeCamp.Org thread](https://forum.freecodecamp.org/t/javascript-jquery-countdown-timer-with-update-capability/505432).
- * https://stackoverflow.com/questions/59408241/how-to-stop-a-running-countdown-timer
+ * I consulted [this StackOverflow thread](https://stackoverflow.com/questions/59408241/how-to-stop-a-running-countdown-timer) on modifying an existing countdown while it's running.  In particular, user Ajay's code made me realize I needed to place the timeInterval variable as a global variable.
 
 ---
 Written by Giancarlo Whitaker, 2023
