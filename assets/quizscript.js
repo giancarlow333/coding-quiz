@@ -52,7 +52,7 @@ highScoreElt.addEventListener("click", displayHighScore);
 function startQuiz() {
   displayElt.textContent = ""; // clear existing content
   countdown(defaultTimeRemaining, 0);
-  addQuestion(0);
+  addQuestion(questionArray[questionCount]);
 }
 
 // Question Objects
