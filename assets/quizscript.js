@@ -202,7 +202,7 @@ function rightAnswerListener() {
   setTimeout(function () {
     questionCount += 1;
     clearAndAdvanceQuestion(questionCount);
-  }, 1000);
+  }, 500);
 }
 
 function wrongAnswerListener() {
@@ -213,7 +213,7 @@ function wrongAnswerListener() {
   setTimeout(function () {
     questionCount += 1;
     clearAndAdvanceQuestion(questionCount);
-  }, 1000);
+  }, 500);
   countdown(currentTimeRemaining, -10);
 }
 
@@ -288,6 +288,11 @@ function displayAfterScoreSubmitted() {
   var h3 = document.createElement("h3");
   h3.textContent = "Your score has been submitted!";
   displayElt.appendChild(h3);
+
+  var btnElt = document.createElement("button");
+  btnElt.textContent = "Go back";
+  btnElt.addEventListener("click", displayStartingScreen);
+  displayElt.appendChild(btnElt);
 }
 
 // Question Objects
