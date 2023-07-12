@@ -4,12 +4,15 @@ var displayElt = document.querySelector("#display");
 var quizStartElt = document.querySelector("#start-quiz");
 var timerElt = document.querySelector("#countdown");
 
+const maxNumberOfQuestions = 5; // when questionCount equals this, quit all
+const secondsPerQuestion = 10;
+const pointsPerQuestion = 10;
+
 var yourScore = 0;
-var defaultTimeRemaining = 50; // global variable
+var defaultTimeRemaining = maxNumberOfQuestions * secondsPerQuestion; // global variable
 var currentTimeRemaining = defaultTimeRemaining; // initial value
 var timeInterval;
 var questionCount = 0;
-const maxNumberOfQuestions = 5; // when questionCount equals this, quit all
 
 // Add event listener to the high score button
 highScoreElt.addEventListener("click", displayHighScore);
@@ -199,7 +202,7 @@ function rightAnswerListener() {
   var thing = document.createElement("h2");
   thing.textContent = "CORRECT!";
   displayElt.appendChild(thing);
-  yourScore += 10;
+  yourScore += pointsPerQuestion;
   setTimeout(function () {
     questionCount += 1;
     clearAndAdvanceQuestion(questionCount);
@@ -210,7 +213,7 @@ function wrongAnswerListener() {
   var thing = document.createElement("h2");
   thing.textContent = "INCORRECT!";
   displayElt.appendChild(thing);
-  yourScore -= 10;
+  yourScore -= pointsPerQuestion;
   setTimeout(function () {
     questionCount += 1;
     clearAndAdvanceQuestion(questionCount);

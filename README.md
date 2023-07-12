@@ -4,6 +4,8 @@ This app is a timed coding quiz with multiple-choice questions. This app will ru
 
 ## Functionality
 
+The basic logic of the app is as follows:
+
 ```
 WHEN I click the start button
 THEN a timer starts and I am presented with a question
@@ -17,9 +19,25 @@ WHEN the game is over
 THEN I can save my initials and my score
 ```
 
+Note that, as currently setup:
+
+* Each question is worth ten points.
+* You are given ten seconds to answer each question.
+* Each wrong answer deducts ten points from your score and ten seconds from your time to answer subsequent questions.
+
+You can change these in the [quizscript.js file](./assets/quizscript.js) at the very top.  For example, for a ten question quiz where each question is worth three points and you get five seconds per question:
+
+```
+const maxNumberOfQuestions = 10;
+const secondsPerQuestion = 5;
+const pointsPerQuestion = 3;
+```
+
 ## Mock-Up
 
-(TBD)
+The below gif shows the basic functionality of the app:
+
+![An animation showing, in sequence, the starting screen, a question, the final score form, and the list of high scores](./assets/mockup.gif)
 
 ## Deployed Application
 
