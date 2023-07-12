@@ -40,12 +40,16 @@ function countdown (seconds, addSeconds) {
 
 // displayHighScore function
 function displayHighScore() {
-  displayElt.textContent = ""; // clear existing content
+  displayElt.textContent = ""; // clear existing contents
   var h2 = document.createElement("h2");
   h2.textContent = "High scores";
   displayElt.appendChild(h2);
 
   var existingScores = JSON.parse(localStorage.getItem("scores"));
+  if (!existingScores) {
+    h2.textContent = "No scores recorded!";
+    displayElt.appendChild(h2);
+  }
   var numArr = [];
   for (var i = 0; i < existingScores.length; i++) {
     numArr.push(existingScores[i]["score"]);
@@ -56,6 +60,44 @@ function displayHighScore() {
   var p1 = document.createElement("p");
   p1.textContent = "The current high score is: " + maximum;
   displayElt.appendChild(p1);
+
+  // display all scores
+  var table = document.createElement("table");
+  for (var i = 0; i < existingScores.length; i++) {
+    var tr = document.createElement("tr");
+    var tdInitials = document.createElement("td");
+    var tdScore = document.createElement("td");
+    var tdTime = document.createElement("td");
+    tdInitials.textContent = existingScores[i]["initials"];
+    tdScore.textContent = existingScores[i]["score"];
+    tdTime.textContent = existingScores[i]["time"];
+    tr.appendChild(tdScore);
+    tr.appendChild(tdInitials);
+    tr.appendChild(tdTime);
+    table.appendChild(tr);
+  }
+  displayElt.appendChild(table);
+
+  // add buttons to go back or clear
+  var btnElt1 = document.createElement("button");
+  var btnElt2 = document.createElement("button");
+  btnElt1.textContent = "Go back";
+  btnElt2.textContent = "Clear high scores";
+  btnElt1.setAttribute("style", "margin: 5px;");
+  btnElt2.setAttribute("style", "margin: 5px;");
+  btnElt1.addEventListener("click", displayStartingScreen());
+  btnElt2.addEventListener("click", function () {
+    localStorage.clear();
+  });
+
+  var p2 = document.createElement("p");
+  p2.appendChild(btnElt1);
+  p2.appendChild(btnElt2);
+  displayElt.appendChild(p2);
+}
+
+function displayStartingScreen() {
+  return;
 }
 
 // function courtesy Fabian De La Peña Montero
