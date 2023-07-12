@@ -163,7 +163,7 @@ function showFinalScore() {
   var inputElt = document.createElement("input");
   var labelElt = document.createElement("label");
   var btnElt = document.createElement("button");
-  
+
   h2.textContent = "All done!";
   displayElt.appendChild(h2);
   p1.textContent = "Your final score is " + yourScore;
@@ -171,12 +171,23 @@ function showFinalScore() {
   labelElt.textContent = "Enter your initials: ";
   labelElt.setAttribute("for", "initials");
   inputElt.setAttribute("name", "initials");
+  inputElt.setAttribute("id", "initials");
   btnElt.textContent = "Submit";
+  formElt.addEventListener("submit", submitScore);
   formElt.appendChild(labelElt);
   formElt.appendChild(inputElt);
   formElt.appendChild(btnElt);
   p2.appendChild(formElt);
   displayElt.appendChild(p2);
+}
+
+function submitScore(event) {
+  event.preventDefault();
+  var initials = document.getElementById("initials").value;
+  console.log(initials);
+  localStorage.setItem("score", yourScore);
+  localStorage.setItem("user", initials);
+  //return;
 }
 
 // Question Objects
