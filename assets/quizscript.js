@@ -38,6 +38,7 @@ function countdown (seconds, addSeconds) {
   timeInterval = setInterval(function () {
     if (currentTimeRemaining == 0) {
       clearInterval(timeInterval);
+      showFinalScore();
       return;
     }
     currentTimeRemaining--;
