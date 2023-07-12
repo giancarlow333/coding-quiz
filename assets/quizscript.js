@@ -70,9 +70,10 @@ function displayHighScore() {
     var tdInitials = document.createElement("td");
     var tdScore = document.createElement("td");
     var tdTime = document.createElement("td");
+    var dateTime = new Date(Date.parse(existingScores[i]["time"]));
     tdInitials.textContent = existingScores[i]["initials"];
     tdScore.textContent = existingScores[i]["score"];
-    tdTime.textContent = existingScores[i]["time"];
+    tdTime.textContent = dateTime.toLocaleString();
     tr.appendChild(tdScore);
     tr.appendChild(tdInitials);
     tr.appendChild(tdTime);
