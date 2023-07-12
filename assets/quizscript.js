@@ -85,7 +85,7 @@ function displayHighScore() {
   btnElt2.textContent = "Clear high scores";
   btnElt1.setAttribute("style", "margin: 5px;");
   btnElt2.setAttribute("style", "margin: 5px;");
-  btnElt1.addEventListener("click", displayStartingScreen());
+  btnElt1.addEventListener("click", displayStartingScreen);
   btnElt2.addEventListener("click", function () {
     localStorage.clear();
   });
@@ -96,9 +96,27 @@ function displayHighScore() {
   displayElt.appendChild(p2);
 }
 
-function displayStartingScreen() {
-  return;
+function displayStartingScreen(event) {
+  event.preventDefault();
+  displayElt.textContent = "";
+
+  var h1 = document.createElement("h1");
+  var p1 = document.createElement("p");
+  var btnElt = document.createElement("button");
+
+  h1.textContent = "Coding Quiz Challenge!";
+  p1.textContent = "Try to answer the following code-related questions within the time alotted.  Keep in mind that incorrect answers will penalize your score/time by ten seconds!";
+  btnElt.textContent = "Start Quiz";
+  btnElt.setAttribute("id", "start-quiz");
+
+  displayElt.appendChild(h1);
+  displayElt.appendChild(p1);
+  displayElt.appendChild(btnElt);
+  quizStartElt = document.querySelector("#start-quiz");
+  quizStartElt.addEventListener("click", startQuiz);
 }
+
+//displayStartingScreen(); // initialize
 
 // function courtesy Fabian De La Peña Montero
 function findMaximum(numArr) {
