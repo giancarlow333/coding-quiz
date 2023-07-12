@@ -42,8 +42,31 @@ function countdown (seconds, addSeconds) {
 function displayHighScore() {
   displayElt.textContent = ""; // clear existing content
   var h2 = document.createElement("h2");
-  h2.textContent = "The high score is 99";
+  h2.textContent = "High scores";
   displayElt.appendChild(h2);
+
+  var existingScores = JSON.parse(localStorage.getItem("scores"));
+  var numArr = [];
+  for (var i = 0; i < existingScores.length; i++) {
+    numArr.push(existingScores[i]["score"]);
+    console.log(existingScores[i]["score"]);
+  }
+  console.log(numArr);
+  var maximum = findMaximum(numArr);
+  var p1 = document.createElement("p");
+  p1.textContent = "The current high score is: " + maximum;
+  displayElt.appendChild(p1);
+}
+
+// function courtesy Fabian De La Peña Montero
+function findMaximum(numArr) {
+  var maxNum = numArr[0];
+  for (var i = 1; i < numArr.length; i++) {
+    if (numArr[i] > maxNum) {
+      maxNum = numArr[i];
+    }
+  }
+  return maxNum;
 }
 
 // Add event listener to the high score button
@@ -209,10 +232,14 @@ function submitScore(event) {
     theScores.push(storeThis);
     localStorage.setItem("scores", JSON.stringify(theScores));
   }
-  //return;
+  displayAfterScoreSubmitted();
 }
 
-
+function displayAfterScoreSubmitted() {
+  var h3 = document.createElement("h3");
+  h3.textContent = "Your score has been submitted!";
+  displayElt.appendChild(h3);
+}
 
 // Question Objects
 const firstQuestion = {

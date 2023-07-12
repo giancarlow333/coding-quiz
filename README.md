@@ -31,7 +31,8 @@ Non-original code in this project:
 
  * I consulted [this StackOverflow thread](https://stackoverflow.com/questions/59408241/how-to-stop-a-running-countdown-timer) on modifying an existing countdown while it's running.  In particular, user Ajay's code made me realize I needed to place the timeInterval variable as a global variable.
  * I also consulted [this freeCodeCamp.Org thread](https://www.freecodecamp.org/news/how-to-submit-a-form-with-javascript/) about using JavaScript to submit forms.
- * https://stackoverflow.com/questions/35963412/append-data-to-localstorage-object
+ * I consulted [this StackOverflow thread](https://stackoverflow.com/questions/35963412/append-data-to-localstorage-object) (particularly the answer by Dimitris Karagiannis) on how to append items to an object already existing in localStorage.
+ * The findMaximum() function is via [Fabian De La Peña Montero](http://fdlpm.com).
 
 ---
 Written by Giancarlo Whitaker, 2023
