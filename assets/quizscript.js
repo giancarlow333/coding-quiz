@@ -184,11 +184,35 @@ function showFinalScore() {
 function submitScore(event) {
   event.preventDefault();
   var initials = document.getElementById("initials").value;
+  var existingScores = localStorage.getItem("scores");
+  /*var score = document.getElementById("initials").value;
   console.log(initials);
+  if (!score || ) 
   localStorage.setItem("score", yourScore);
   localStorage.setItem("user", initials);
+  localStorage.setItem("time", Date());*/
+
+  var currentTime = Date();
+  var storeThis = {
+    "initials": initials,
+    "score": yourScore,
+    "time": currentTime
+  };
+  
+  if (!existingScores) {
+    var storeArray = [];
+    storeArray.push(storeThis);
+    localStorage.setItem("scores", JSON.stringify(storeArray));
+  }
+  else {
+    var theScores = JSON.parse(existingScores);
+    theScores.push(storeThis);
+    localStorage.setItem("scores", JSON.stringify(theScores));
+  }
   //return;
 }
+
+
 
 // Question Objects
 const firstQuestion = {
