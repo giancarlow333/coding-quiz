@@ -5,11 +5,11 @@ var quizStartElt = document.querySelector("#start-quiz");
 var timerElt = document.querySelector("#countdown");
 
 var yourScore = 0;
-var defaultTimeRemaining = 60; // global variable
+var defaultTimeRemaining = 50; // global variable
 var currentTimeRemaining = defaultTimeRemaining; // initial value
 var timeInterval;
 var questionCount = 0;
-const maxNumberOfQuestions = 2; // when questionCount equals this, quit all
+const maxNumberOfQuestions = 5; // when questionCount equals this, quit all
 
 // Add event listener to the high score button
 highScoreElt.addEventListener("click", displayHighScore);
@@ -313,5 +313,38 @@ const secondQuestion = {
   ans3: true, 
   ans4: false
 };
+const thirdQuestion = {
+  qtext: "Arrays in JavaScript can be used to store...", 
+  text1: "1. numbers and strings", 
+  text2: "2. other arrays", 
+  text3: "3. booleans", 
+  text4: "4. all of the above", 
+  ans1: false, 
+  ans2: false, 
+  ans3: false, 
+  ans4: true
+};
+const fourthQuestion = {
+  qtext: "What must string values be enclosed within when being assigned to variables?", 
+  text1: "1. quotes", 
+  text2: "2. commas", 
+  text3: "3. curly brackets", 
+  text4: "4. parentheses", 
+  ans1: true, 
+  ans2: false, 
+  ans3: false, 
+  ans4: false
+};
+const fifthQuestion = {
+  qtext: "A very useful tool used during development and debugging for printing content to the debugger is...", 
+  text1: "1. JavaScript", 
+  text2: "2. terminal/bash", 
+  text3: "3. for loops", 
+  text4: "4. console.log", 
+  ans1: false, 
+  ans2: false, 
+  ans3: false, 
+  ans4: true
+};
 
-const questionArray = [ firstQuestion, secondQuestion ];
+const questionArray = [ firstQuestion, secondQuestion, thirdQuestion, fourthQuestion, fifthQuestion ];
