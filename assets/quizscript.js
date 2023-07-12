@@ -11,6 +11,11 @@ var timeInterval;
 var questionCount = 0;
 const maxNumberOfQuestions = 2; // when questionCount equals this, quit all
 
+// Add event listener to the high score button
+highScoreElt.addEventListener("click", displayHighScore);
+// Add event listener to the start quiz button
+quizStartElt.addEventListener("click", startQuiz);
+
 // countdown function
 /* seconds: Seconds in the countdown, i.e. currentTimeRemaining
  * addSeconds: Seconds to add to an EXISTING countdown
@@ -19,7 +24,6 @@ function countdown (seconds, addSeconds) {
   // clear existing interval
   if (timeInterval) {
     clearInterval(timeInterval);
-    console.log("Interval cleared");
   }
 
   if (addSeconds != 0) {
@@ -53,9 +57,7 @@ function displayHighScore() {
   var numArr = [];
   for (var i = 0; i < existingScores.length; i++) {
     numArr.push(existingScores[i]["score"]);
-    console.log(existingScores[i]["score"]);
   }
-  console.log(numArr);
   var maximum = findMaximum(numArr);
   var p1 = document.createElement("p");
   p1.textContent = "The current high score is: " + maximum;
@@ -96,6 +98,7 @@ function displayHighScore() {
   displayElt.appendChild(p2);
 }
 
+// displayStartingScreen function
 function displayStartingScreen(event) {
   event.preventDefault();
   displayElt.textContent = "";
@@ -116,8 +119,6 @@ function displayStartingScreen(event) {
   quizStartElt.addEventListener("click", startQuiz);
 }
 
-//displayStartingScreen(); // initialize
-
 // function courtesy Fabian De La Peña Montero
 function findMaximum(numArr) {
   var maxNum = numArr[0];
@@ -129,9 +130,6 @@ function findMaximum(numArr) {
   return maxNum;
 }
 
-// Add event listener to the high score button
-highScoreElt.addEventListener("click", displayHighScore);
-
 // startQuiz function
 function startQuiz() {
   displayElt.textContent = ""; // clear existing content
@@ -139,9 +137,7 @@ function startQuiz() {
   addQuestion(questionArray[questionCount]);
 }
 
-// Add event listener to the start quiz button
-quizStartElt.addEventListener("click", startQuiz);
-
+// add a question to the screen
 function addQuestion(questionObject) {
   // Create elements that will hold the question
   var theQuestion = document.createElement("h2");
@@ -215,7 +211,6 @@ function wrongAnswerListener() {
   displayElt.appendChild(thing);
   yourScore -= 10;
   setTimeout(function () {
-    // separate function to clear and advance question
     questionCount += 1;
     clearAndAdvanceQuestion(questionCount);
   }, 1000);
@@ -233,7 +228,7 @@ function clearAndAdvanceQuestion(questionNumber) {
   }
 }
 
-// function for summary
+// show the final score
 function showFinalScore() {
   // clear the screen
   displayElt.textContent = "";
@@ -268,12 +263,6 @@ function submitScore(event) {
   event.preventDefault();
   var initials = document.getElementById("initials").value;
   var existingScores = localStorage.getItem("scores");
-  /*var score = document.getElementById("initials").value;
-  console.log(initials);
-  if (!score || ) 
-  localStorage.setItem("score", yourScore);
-  localStorage.setItem("user", initials);
-  localStorage.setItem("time", Date());*/
 
   var currentTime = Date();
   var storeThis = {
