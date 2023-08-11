@@ -229,6 +229,8 @@ function clearAndAdvanceQuestion(questionNumber) {
     addQuestion(questionArray[questionNumber]);
   }
   else { // quit
+    clearInterval(timeInterval); // Stop the countdown
+    timerElt.textContent = ""; // Remove countdown from screen
     showFinalScore();
   }
 }
